@@ -14,19 +14,21 @@
             Then use the index to print the players place in the collection.
           </p>
           <!-- add the v-for to player-card -->
-          <div class="player-card text-center">
-            <h5>{{}}</h5>
+          <div
+            class="player-card text-center"
+            v-for="(player, index) in state.players">
+            <h5>Player {{ index + 1 }}</h5>
             <div>
-              <img class="img" src="" />
+              <img class="img" :src="player.photo" />
             </div>
             <div>
-              <span>{{}}</span>
+              <span>{{ player.name }}</span>
             </div>
             <div>
-              <span>{{}}</span>
+              <span>{{ player.position }}</span>
             </div>
             <div>
-              <span>{{}}</span>
+              <span>{{ player.number }}</span>
             </div>
           </div>
         </div>
@@ -38,15 +40,15 @@
             property on the object we want to print the key(property name) and
             value contained at that key.
           </p>
-          <div class="blog" v-for="(value, key) in state.blog" :key="key">
-            <p>{{}}: {{}}</p>
+          <div class="blog" v-for="(value, key) in state.blog" :key="key"
+          :value="value">
+            <p>{{key}}: {{value}}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 import { reactive } from "vue";
@@ -79,6 +81,13 @@ export default {
           position: "QB",
           number: 1,
         },
+        {
+          photo:
+            "https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/2330.png",
+          name: "Tom",
+          position: "real QB",
+          number: 12,
+        },
       ],
     });
     return {
@@ -88,11 +97,10 @@ export default {
 };
 </script>
 
-
 <style scoped>
 .player-card {
-  border: 1px solid rgba(154, 154, 156, 0.4);
-  background-color: rgba(154, 154, 156, 0.4);
+  border: 1px solid rgba(33, 33, 155, 0.4);
+  background-color: rgba(9, 9, 174, 0.4);
   margin: 1rem;
   border-radius: 5px;
 }
